@@ -1,0 +1,40 @@
+name: generate animation
+
+on:
+  # 每天凌晨0点自动更新动画（推荐频率）
+  schedule:
+    - cron: "0 0 * * *" 
+
+  # 允许手动触发（方便测试）
+  workflow_dispatch:
+
+  # 推送到main分支时触发
+  push:
+    branches:
+    - main
+
+jobs:
+  generate:
+    permissions: 
+      contents: write  # 必须保留，赋予写入文件权限
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      # 生成蛇形动画SVG（已替换成你的用户名YipMk）
+      - name: generate github-contribution-grid-snake.svg
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: YipMk  # 你的GitHub用户名，已改好
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+
+      # 推送SVG到output分支（自动创建该分支）
+      - name: push svg to output branch
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 自动生成，无需修改
