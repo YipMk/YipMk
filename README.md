@@ -14,3 +14,9 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+
+<!-- GitHub贡献蛇形动画（适配深浅色模式） -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/YipMk/YipMk/refs/heads/output/github-contribution-grid-snake-dark.svg">
+  <img src="https://raw.githubusercontent.com/YipMk/YipMk/refs/heads/output/github-contribution-grid-snake.svg" alt="GitHub Contribution Snake" width="100%">
+</picture>
